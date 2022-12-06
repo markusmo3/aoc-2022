@@ -3,19 +3,22 @@ import java.math.BigInteger
 import java.security.MessageDigest
 
 fun readTestInput(): List<String> {
-    var callerClass = Thread.currentThread().getStackTrace()[2].getClassName()
-    if (callerClass.contains("_")) {
-        callerClass = callerClass.substring(0, callerClass.indexOf('_'))
-    }
-    return File("src", "${callerClass}_test.txt").readLines()
+    return File("src", "${getCallerClass(3)}_test.txt").readLines()
 }
 
 fun readInput(): List<String> {
-    var callerClass = Thread.currentThread().getStackTrace()[2].getClassName()
+    return File("src", "${getCallerClass(3)}_input.txt").readLines()
+}
+
+fun getCallerClass(index: Int = 3): String {
+    var callerClass = Thread.currentThread().getStackTrace()[index].getClassName()
     if (callerClass.contains("_")) {
         callerClass = callerClass.substring(0, callerClass.indexOf('_'))
     }
-    return File("src", "${callerClass}_input.txt").readLines()
+    if (callerClass.endsWith("Kt")) {
+        callerClass = callerClass.substring(0, callerClass.length - 2)
+    }
+    return callerClass
 }
 
 /**
@@ -31,3 +34,11 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5")
     .digest(toByteArray()))
     .toString(16)
     .padStart(32, '0')
+
+fun checkEquals(expected: Any, actual: Any) {
+    if (expected == actual) {
+        println("SUCCESS: $expected == $actual")
+    } else {
+        println("FAILED:  $expected != $actual")
+    }
+}
