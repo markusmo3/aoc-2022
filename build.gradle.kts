@@ -24,11 +24,17 @@ tasks.register("generateSourceFiles") {
         for (i in 1..24) {
             val iFormatted = if (i < 10) "0$i" else "$i"
             val sourceFile = file(layout.projectDirectory.file("src/Day${iFormatted}.kt"))
-            sourceFile.writeText(sourceTemplateText)
+            if (!sourceFile.exists()) {
+                sourceFile.writeText(sourceTemplateText)
+            }
             val inputFile = file(layout.projectDirectory.file("src/Day${iFormatted}_input.txt"))
-            inputFile.writeText("")
+            if (!inputFile.exists()) {
+                inputFile.writeText("")
+            }
             val testFile = file(layout.projectDirectory.file("src/Day${iFormatted}_test.txt"))
-            testFile.writeText("")
+            if (!testFile.exists()) {
+                testFile.writeText("")
+            }
         }
     }
 }
