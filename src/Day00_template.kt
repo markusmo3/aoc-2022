@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER", "DuplicatedCode")
+
 fun main() {
     fun part1(input: List<String>): String {
         return ""

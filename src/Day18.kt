@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER", "DuplicatedCode")
+
 fun main() {
     fun part1(input: List<String>): String {
         return ""
@@ -7,10 +9,11 @@ fun main() {
         return ""
     }
 
-    val expected = ""
-    check(part1(readTestInput()) == expected)
 
-    val input = readInput()
-    println(part1(input))
-    println(part2(input))
+    println("================ ${getCallerClass()} =================")
+    checkEquals("", part1(readTestInput()))
+    println("=> Part1: " + part1(readInput()))
+    println("========================================")
+    checkEquals("", part2(readTestInput()))
+    println("=> Part2: " + part2(readInput()))
 }
