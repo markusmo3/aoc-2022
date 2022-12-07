@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_PARAMETER", "DuplicatedCode")
+@file:Suppress("UNUSED_PARAMETER", "DuplicatedCode", "KotlinRedundantDiagnosticSuppress")
 
 fun main() {
     fun part1(input: List<String>): String {
